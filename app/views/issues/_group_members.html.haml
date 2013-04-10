@@ -1,0 +1,14 @@
+- if @issue && @issue.assigned_to.is_a?(Group)
+  :css
+    #group_members ul {margin: 0;  padding: 0;}
+    #group_members li {list-style-type:none; margin: 0px 2px 0px 0px; padding: 0px 0px 0px 0px;}
+
+  %h3
+    = l(:label_group_member_plural)
+    = "(#{@issue.assigned_to.users.size})"
+
+  #group_members
+    %ul
+      - @issue.assigned_to.users.each do |user|
+        %li
+          = link_to_user user, :class => :user
